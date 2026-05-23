@@ -1,0 +1,38 @@
+# Discord
+# Installed from PR #3159, which fixes voice RECEPTION under Discord's DAVE
+# end-to-end encryption (enforced March 2026). Context:
+#   - py-cord 2.6.1 uses the deprecated voice gateway v4 -> every /join fails with 4006
+#   - py-cord 2.8.0 uses gateway v8 (join + speak work) but voice RECEIVE is broken by DAVE
+#   - PR #3159 (targeting 2.9.0) implements DAVE decryption so receiving works
+# Switch to py-cord[voice]>=2.9.0 once that release ships.
+# The [voice] extra pulls PyNaCl>=1.6 and davey (the DAVE implementation).
+py-cord[voice] @ git+https://github.com/Pycord-Development/pycord@refs/pull/3159/head
+audioop-lts==0.2.2       # audioop was removed in Python 3.13; this backports it
+
+# Config / env
+python-dotenv==1.0.1
+PyYAML==6.0.2
+
+# AI — LLM
+anthropic==0.40.0
+openai==1.58.1          # covers OpenAI + any OpenAI-compatible endpoint
+
+# AI — STT (local)
+faster-whisper==1.1.0   # GPU: install torch with CUDA first (see wiki/Installation.md)
+
+# AI — STT (cloud)
+deepgram-sdk==3.10.0
+
+# AI — TTS (local)
+# piper-tts is installed separately; see wiki/Installation.md
+# coqui xtts: pip install TTS  (large install, optional)
+
+# AI — TTS (cloud)
+elevenlabs==1.9.0
+
+# Audio / VAD
+silero-vad==5.1.2
+torch>=2.0.0            # required by silero-vad; install CUDA build first for GPU
+torchaudio>=2.0.0
+numpy>=1.26.0
+soundfile==0.12.1

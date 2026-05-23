@@ -1,0 +1,14 @@
+secrets.env
+*.log
+__pycache__/
+*.pyc
+.env/
+.venv/
+models/
+# Large downloadable binaries (ffmpeg/ffprobe/piper) — exceed GitHub's 100MB limit
+bin/
+# Runtime / test artifacts
+jimbot_out.txt
+shutdown.flag
+*.wav
+.claude/settings.local.json

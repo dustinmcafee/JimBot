@@ -1,0 +1,36 @@
+llm:
+  provider: openai_compat       # claude | openai | openai_compat | ollama
+  model: qwen2.5-7b-instruct    # must match the model name shown in LM Studio server
+  api_key_env: null             # LM Studio doesn't need a key
+  base_url: http://localhost:1234/v1   # LM Studio local server default
+  temperature: 1.0
+  max_tokens: 300
+
+stt:
+  provider: faster_whisper      # faster_whisper | deepgram | openai
+  model: medium                  # tiny | base | small | medium | large-v3
+  device: cuda                  # cuda | cpu
+  api_key_env: null
+
+tts:
+  provider: piper               # piper | coqui_xtts | elevenlabs | openai
+  # piper settings
+  piper_model_path: models/piper/en_US-lessac-medium.onnx
+  # coqui settings
+  coqui_model: tts_models/en/ljspeech/fast_pitch
+  # elevenlabs settings
+  elevenlabs_voice_id: null     # e.g. "EXAVITQu4vr4xnSDxMaL" (Bella)
+  elevenlabs_model: eleven_monolingual_v1
+  # openai tts settings
+  openai_tts_voice: onyx        # alloy | echo | fable | onyx | nova | shimmer
+  api_key_env: null
+
+behavior:
+  savage_level: 2               # 1 = mild teasing | 2 = sarcastic | 3 = brutal
+  roast_cooldown_seconds: 8     # min gap between unprompted voice roasts
+  respond_only_when_addressed: false   # true = only roast when someone says the bot name
+  bot_name_trigger: jimbot      # trigger word when respond_only_when_addressed is true
+  announce_when_joining: true   # bot speaks a consent notice when joining voice
+
+discord:
+  command_prefix: "!"           # legacy prefix (slash commands are primary)
